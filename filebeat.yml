@@ -1,0 +1,14 @@
+filebeat.prospectors:
+- input_type: log
+  paths:
+    - /home/ccman/.pm2/logs/app-out-0.log
+
+  include_lines: ["Debug ::  decrypt :: user_id"]
+  exclude_files: [".gz$"]
+tags: ["caocao"]
+output.kafka:
+  enabled: true
+  hosts: ["10.1.101.4:9092","10.1.101.5:9092","10.1.103.246:9092"]
+  topic: beats
+logging.to_files: true
+logging.files:
